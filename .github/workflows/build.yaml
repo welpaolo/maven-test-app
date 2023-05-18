@@ -29,7 +29,7 @@ jobs:
           plugin_repositories: '[{ "id": "some-plugin-repository", "url": "${{ secrets.REPO_URL }}" }]'
           servers: '[{ "id": "some-server", "username": "${{ secrets.USERNAME }}" , "password": "${{ secrets.PASSWORD }}" }]'
       - name: Packing the application
-        run: cd app; mvn clean package
+        run: cd app; mvn clean package -X
       - name: Check artifact existence
         id: check_files
         uses: andstor/file-existence-action@v1
