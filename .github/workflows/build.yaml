@@ -22,6 +22,12 @@ jobs:
         with:
           distribution: temurin
           java-version: 8
+      - name: maven-settings-xml-action
+        uses: whelk-io/maven-settings-xml-action@v4
+        with:
+          repositories: '[{ "id": "some-repository", "url": "${{ secrets.REPO_URL }}" }]'
+          plugin_repositories: '[{ "id": "some-plugin-repository", "url": "${{ secrets.REPO_URL }}" }]'
+          servers: '[{ "id": "some-server", "username": "${{ secrets.USERNAME }}"" , "password": "${{ secrets.PASSWORD }}" }]'
       - name: Packing the application
         run: cd app; mvn clean package
       - name: Check artifact existence
