@@ -23,12 +23,12 @@ jobs:
           distribution: temurin
           java-version: 8
       - name: maven-settings-xml-action
-        uses: whelk-io/maven-settings-xml-action@v4
+        uses: whelk-io/maven-settings-xml-action@v21
         with:
           repositories: '[{ "id": "some-repository", "url": "${{ secrets.REPO_URL }}" }]'
           plugin_repositories: '[{ "id": "some-plugin-repository", "url": "${{ secrets.REPO_URL }}" }]'
           servers: '[{ "id": "some-server", "username": "${{ secrets.USERNAME }}" , "password": "${{ secrets.PASSWORD }}" }]'
-          mirrors: '[{ "id": "maven-default-http-blocker", "mirrorOf": "dummy", "url": "http://0.0.0.0/" }]'
+          mirrors: '[{ "id": "release-http-unblocker", "mirrorOf": "central", "url": "${{ secrets.REPO_URL }}" }]'
 
       - name: Packing the application
         run: cd app; mvn clean package -X
