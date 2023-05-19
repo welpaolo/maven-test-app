@@ -25,10 +25,10 @@ jobs:
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v21
         with:
-          repositories: '[{ "id": "some-repository", "url": "${{ secrets.REPO_URL }}" }]'
-          plugin_repositories: '[{ "id": "some-plugin-repository", "url": "${{ secrets.REPO_URL }}" }]'
-          servers: '[{ "id": "some-server", "username": "${{ secrets.USERNAME }}" , "password": "${{ secrets.PASSWORD }}" }]'
-          mirrors: '[{ "id": "release-http-unblocker", "mirrorOf": "central", "url": "${{ secrets.REPO_URL }}" }]'
+          repositories: '[{ "id": "jfrog", "url": "${{ secrets.REPO_URL }}" }]'
+          plugin_repositories: '[{ "id": "jfrogplugin", "url": "${{ secrets.REPO_URL }}" }]'
+          servers: '[{ "id": "jfrog", "username": "${{ secrets.USERNAME }}" , "password": "${{ secrets.PASSWORD }}" }]'
+          mirrors: '[{ "id": "jfrog", "mirrorOf": "*", "url": "${{ secrets.REPO_URL }}", "name": "jfrog" }]'
 
       - name: Packing the application
         run: cd app; mvn clean package -X
